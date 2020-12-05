@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-
+"""
 class attention1d(nn.Module):
     def __init__(self,in_planes,ratios,K,temperature,init_weight = True):
         super(attention1d,self).__init__()
@@ -39,9 +39,11 @@ class attention1d(nn.Module):
     def forward(self,z):
         z = self.avgpool(z)
         z = self.fc1(z)
-        z = self.relu(z)
-        z = self.fc2(z)
-        z = z.view(z.size(0),-1)   
+        # z = self.relu(z)
+        z = F.relu(z)
+        z = self.fc2(z).view(z.size(0), -1)
+        # z = self.fc2(z)
+        # z = z.view(z.size(0),-1)   
         return F.softmax(z/self.temperature,1) 
     
 class Dynamic_conv1d(nn.Module):
@@ -98,7 +100,7 @@ class Dynamic_conv1d(nn.Module):
                              dilation=self.dilation, groups=self.groups * batch_size)
         output = output.view(batch_size, self.out_planes, output.size(-1))
         return output
-
+"""
 
 class attention2d(nn.Module):
     def __init__(self,in_planes,ratios,K,temperature,init_weight = True):
@@ -112,7 +114,7 @@ class attention2d(nn.Module):
             hidden_planes = K
         
         self.fc1   = nn.Conv2d(in_planes,hidden_planes,1,bias = False)
-        self.relu  = nn.ReLU()
+        # self.relu  = nn.ReLU()
         self.fc2   = nn.Conv2d(hidden_planes,K,1,bias = True)
         self.temperature = temperature
         
@@ -137,9 +139,12 @@ class attention2d(nn.Module):
     def forward(self,z):
         z = self.avgpool(z)
         z = self.fc1(z)
-        z = self.relu(z)
-        z = self.fc2(z)
-        z = z.view(z.size(0),-1)   
+        # z = self.relu(z)
+        z = F.relu(z)
+        # z = self.fc2(z)
+        # z = z.view(z.size(0),-1) 
+        z = self.fc2(z).view(z.size(0), -1)
+        print('atention')  
         return F.softmax(z/self.temperature,1) 
     
 class Dynamic_conv2d(nn.Module):
@@ -186,17 +191,18 @@ class Dynamic_conv2d(nn.Module):
 #         The generation of the weight of dynamic convolution,
 #         which generates batch_size convolution parameters 
 #         (each parameter is different) 
-        aggregate_weight = torch.mm(softmax_attention,self.bias).view(-1,self.in_planes,self.kernel_size,)# expects two matrices (2D tensors)
+        aggregate_weight = torch.mm(softmax_attention,weight).view(-1,self.in_planes,self.kernel_size,self.kernel_size)# expects two matrices (2D tensors)
         if self.bias is not None:
             aggregate_bias = torch.mm(softmax_attention,self.bias).view(-1)
             output = F.conv2d(x,weight = aggregate_weight,bias = aggregate_bias,stride = self.stride,padding = self.padding,
                              dilation=self.dilation, groups=self.groups * batch_size)
         else:
-            output = F.conv2d(x,weight = aggregate_weight,bias = None,stride = self.stride,padding = self.padding,
+            output = F.conv2d(z,weight = aggregate_weight,bias = None,stride = self.stride,padding = self.padding,
                              dilation=self.dilation, groups=self.groups * batch_size)
         output = output.view(batch_size, self.out_planes, output.size(-2),output.size(-1))
+        print('2d-att-for')
         return output        
-
+"""
 class attention3d(nn.Module):
     def __init__(self,in_planes,ratios,K,temperature,init_weight = True):
         super(attention3d,self).__init__()
@@ -293,7 +299,7 @@ class Dynamic_conv3d(nn.Module):
                              dilation=self.dilation, groups=self.groups * batch_size)
         output = output.view(batch_size, self.out_planes,output.size(-3),output.size(-2),output.size(-1))
         return output 
-
+"""
 if __name__ == '__main__':
     x = torch.randn(24, 3,  20)
     model = Dynamic_conv1d(in_planes=3, out_planes=16, kernel_size=3, ratio=0.25, padding=1,)
