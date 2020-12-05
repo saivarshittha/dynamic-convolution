@@ -13,8 +13,8 @@ from torch.utils.data import Dataset
 import torchvision.transforms as transforms
 from collections import OrderedDict
 from torchvision.models.resnet import resnet18 as raw_resnet18
-from dy_models.dy_resnet import resnet18 as dy_resnet18
-
+# from dy_models.dy_resnet import resnet18 as dy_resnet18
+from dy_resnet import resnet18 as dy_resnet18
 from datetime import datetime
 
 parser = argparse.ArgumentParser(description='dynamic convolution')
@@ -70,7 +70,9 @@ elif args.dataset=='cifar100':
     testloader = torch.utils.data.DataLoader(testset, batch_size=args.batch_size, shuffle=False, num_workers=0)
 
 if args.net_name=='dy_resnet18':
+    print('nnn')
     model = dy_resnet18(num_classes=numclasses)
+    print('i doubt')
 elif args.net_name=='raw_resnet18':
     model = raw_resnet18(num_classes=numclasses)
 elif args.net_name=='raw_vgg11':
@@ -98,6 +100,7 @@ def train(epoch):
 
         data, target = data.to(args.device), target.to(args.device)
         optimizer.zero_grad()
+        print('aaa')
         output = model(data)
         loss = F.cross_entropy(output, target)
         avg_loss += loss.item()
