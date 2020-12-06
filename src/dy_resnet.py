@@ -107,21 +107,15 @@ class ResNet(nn.Module):
     def __init__(self,block,layers,num_classes = 1000,zero_init_residual = False,
                 groups = 1,width_per_group = 64,replace_stride_with_dilation = None,
                 norm_layer = None):
-                
-                """
-                Block : Basicblock
+        """Block : Basicblock
                 layers : how many times we want to use block,
                          [3,4,6,3] for resnet 50 which means,
-                         we gonna use the block 3 times in first layer, and so on
-                
-
-                """
-        
+                         we gonna use the block 3 times in first layer, and so on"""
         super(ResNet,self).__init__()
         if norm_layer is None:
             norm_layer = nn.BatchNorm2d
         self._norm_layer = norm_layer
-        # print('XXX')
+        
         self.in_planes = 64
         self.dilation = 1
         
@@ -146,7 +140,7 @@ class ResNet(nn.Module):
         self.layer3        = self._make_layer(block,256,layers[2],stride = 2,
                                              dilate = replace_stride_with_dilation[1])
         self.layer4        = self._make_layer(block,512,layers[3],stride = 2,
-                                              dilate = replace_stride_with_dilation[2]) # 512 * 4 channels at the end
+                                              dilate = replace_stride_with_dilation[2])
         self.avgpool       = nn.AdaptiveAvgPool2d((1,1))
         self.fc            = nn.Linear(512 * block.expansion,num_classes)
         
@@ -170,12 +164,9 @@ class ResNet(nn.Module):
                 m.update_temperature()              ### ???
     
     def _make_layer(self,block,out_planes,blocks,stride = 1,dilate = False):
-        """
-        blocks : no.of residual blocks,i.e, the no.of times we gonna use block
+        """blocks : no.of residual blocks,i.e, the no.of times we gonna use block
         out_planes : out channels
-        stride : 1 for fisrt layer , 2 for others
-
-        """
+        stride : 1 for fisrt layer , 2 for others"""
         norm_layer = self._norm_layer
         downsample = None
         previous_dilation = self.dilation
@@ -190,7 +181,7 @@ class ResNet(nn.Module):
                             ) # this is identity downsample
         layers = []
         layers.append(block(self.in_planes,out_planes,stride,downsample,self.groups,
-                           self.base_width,previous_dilation,norm_layer)) # out_planes become out_planes * self.expansion
+                           self.base_width,previous_dilation,norm_layer)) #out_planes become out_planes * self.expansion
         self.in_planes = out_planes * block.expansion
         for _ in range(1,blocks):
             layers.append(block(self.in_planes,out_planes,groups = self.groups,
@@ -199,11 +190,12 @@ class ResNet(nn.Module):
         return nn.Sequential(*layers)
     
     def _forward_impl(self,z):
+        
         z = self.conv1(z)
         z = self.bn1(z)
         z = self.relu(z)
         z = self.maxpool(z)
- 
+        
         z = self.layer1(z)
         z = self.layer2(z)
         z = self.layer3(z)
@@ -223,13 +215,13 @@ class ResNet(nn.Module):
         
 def _resnet(arch,block,layers,pretrained,progress, **kwargs):
     model = ResNet(block,layers, **kwargs)
-    # print("Hi")
+    
     if pretrained:
         state_dict = load_state_dict_from_url(model_urls[arch],progress = progress)
         model.load_state_dict(state_dict)  
-    # print('This is _resnet func')     
+        
     return model
 def resnet18(pretrained = False,progress = True,**kwargs):
-    # print("hey")
+    
     return _resnet('resnet18',BasicBlock,[2,2,2,2],pretrained,progress,**kwargs)
   
