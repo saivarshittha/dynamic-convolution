@@ -112,7 +112,7 @@ class ResNet(nn.Module):
         if norm_layer is None:
             norm_layer = nn.BatchNorm2d
         self._norm_layer = norm_layer
-        print('XXX')
+        # print('XXX')
         self.in_planes = 64
         self.dilation = 1
         
@@ -184,12 +184,12 @@ class ResNet(nn.Module):
         return nn.Sequential(*layers)
     
     def _forward_impl(self,z):
-        print('1')
+        # print('1')
         z = self.conv1(z)
         z = self.bn1(z)
         z = self.relu(z)
         z = self.maxpool(z)
-        print('2')
+        # print('2')
         z = self.layer1(z)
         z = self.layer2(z)
         z = self.layer3(z)
@@ -198,7 +198,7 @@ class ResNet(nn.Module):
         z = self.avgpool(z)
         z = torch.flatten(z,1)
         z = self.fc(z)
-        print('3')
+        # print('3')
         
         return z
     def forward(self,z):
@@ -209,13 +209,13 @@ class ResNet(nn.Module):
         
 def _resnet(arch,block,layers,pretrained,progress, **kwargs):
     model = ResNet(block,layers, **kwargs)
-    print("Hi")
+    # print("Hi")
     if pretrained:
         state_dict = load_state_dict_from_url(model_urls[arch],progress = progress)
         model.load_state_dict(state_dict)  
-    print('This is _resnet func')     
+    # print('This is _resnet func')     
     return model
 def resnet18(pretrained = False,progress = True,**kwargs):
-    print("hey")
+    # print("hey")
     return _resnet('resnet18',BasicBlock,[2,2,2,2],pretrained,progress,**kwargs)
   
