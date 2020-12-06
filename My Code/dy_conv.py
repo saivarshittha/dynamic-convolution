@@ -144,7 +144,7 @@ class attention2d(nn.Module):
         # z = self.fc2(z)
         # z = z.view(z.size(0),-1) 
         z = self.fc2(z).view(z.size(0), -1)
-        print('atention')  
+        # print('atention')  
         return F.softmax(z/self.temperature,1) 
     
 class Dynamic_conv2d(nn.Module):
@@ -200,7 +200,7 @@ class Dynamic_conv2d(nn.Module):
             output = F.conv2d(z,weight = aggregate_weight,bias = None,stride = self.stride,padding = self.padding,
                              dilation=self.dilation, groups=self.groups * batch_size)
         output = output.view(batch_size, self.out_planes, output.size(-2),output.size(-1))
-        print('2d-att-for')
+        # print('2d-att-for')
         return output        
 """
 class attention3d(nn.Module):
@@ -302,11 +302,11 @@ class Dynamic_conv3d(nn.Module):
 """
 if __name__ == '__main__':
     x = torch.randn(24, 3,  20)
-    model = Dynamic_conv1d(in_planes=3, out_planes=16, kernel_size=3, ratio=0.25, padding=1,)
-    x = x.to('cuda:0')
-    model.to('cuda')
+    # model = Dynamic_conv1d(in_planes=3, out_planes=16, kernel_size=3, ratio=0.25, padding=1,)
+    # x = x.to('cuda:0')
+    # model.to('cuda')
     # model.attention.cuda()
     # nn.Conv3d()
-    print(model(x).shape)
-    model.update_temperature()
-    model.update_temperature()
+    # print(model(x).shape)
+    # model.update_temperature()
+    # model.update_temperature()
