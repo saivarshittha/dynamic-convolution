@@ -1,0 +1,158 @@
+Namespace(batch_size=128, dataset='cifar10', epochs=50, lr=0.1, momentum=0.9, net_name='dy_resnet18', test_batch_size=20, weight_decay=0.0001)
+Files already downloaded and verified
+Files already downloaded and verified
+5 GPUs available.
+Namespace(batch_size=128, dataset='cifar10', device='cuda:0', epochs=50, lr=0.1, momentum=0.9, net_name='dy_resnet18', test_batch_size=20, weight_decay=0.0001)
+Time :  06/12/2020 16:54:24
+epoch =  0
+Train Epoch: 1, loss1.740814, acc0.21213999390602112Test set:average loss: 1.8711, accuracy32.54
+Time :  06/12/2020 16:58:31
+epoch =  1
+Train Epoch: 2, loss1.451217, acc0.36649999022483826Test set:average loss: 1.8071, accuracy43.42
+Time :  06/12/2020 17:02:32
+epoch =  2
+Train Epoch: 3, loss1.466805, acc0.4365600049495697Test set:average loss: 1.9014, accuracy47.47
+Time :  06/12/2020 17:06:32
+epoch =  3
+Train Epoch: 4, loss1.461813, acc0.4810200035572052Test set:average loss: 1.4725, accuracy52.92
+Time :  06/12/2020 17:10:32
+epoch =  4
+Train Epoch: 5, loss1.445570, acc0.5194000005722046Test set:average loss: 1.3077, accuracy58.06
+Time :  06/12/2020 17:14:32
+epoch =  5
+Train Epoch: 6, loss1.149655, acc0.5572400093078613Test set:average loss: 1.4515, accuracy59.07
+Time :  06/12/2020 17:18:33
+epoch =  6
+Train Epoch: 7, loss1.219017, acc0.581820011138916Test set:average loss: 1.6670, accuracy60.36
+Time :  06/12/2020 17:22:34
+epoch =  7
+Train Epoch: 8, loss0.989867, acc0.5993599891662598Test set:average loss: 1.7258, accuracy64.58
+Time :  06/12/2020 17:26:35
+epoch =  8
+Train Epoch: 9, loss0.992309, acc0.6321399807929993Test set:average loss: 1.2605, accuracy66.31
+Time :  06/12/2020 17:30:35
+epoch =  9
+Train Epoch: 10, loss1.066828, acc0.644599974155426Test set:average loss: 1.0489, accuracy64.72
+Time :  06/12/2020 17:34:36
+epoch =  10
+Train Epoch: 11, loss1.187432, acc0.6617400050163269Test set:average loss: 2.9031, accuracy46.47
+Time :  06/12/2020 17:38:37
+epoch =  11
+Train Epoch: 12, loss0.946251, acc0.6556000113487244Test set:average loss: 0.9493, accuracy68.01
+Time :  06/12/2020 17:42:37
+epoch =  12
+Train Epoch: 13, loss0.808196, acc0.6823400259017944Test set:average loss: 0.9017, accuracy69.89
+Time :  06/12/2020 17:46:38
+epoch =  13
+Train Epoch: 14, loss0.934425, acc0.6963000297546387Test set:average loss: 1.0114, accuracy69.91
+Time :  06/12/2020 17:50:39
+epoch =  14
+Train Epoch: 15, loss0.651173, acc0.700659990310669Test set:average loss: 0.8458, accuracy72.15
+Time :  06/12/2020 17:54:40
+epoch =  15
+Train Epoch: 16, loss0.938794, acc0.7117400169372559Test set:average loss: 0.7700, accuracy73.61
+Time :  06/12/2020 17:58:40
+epoch =  16
+Train Epoch: 17, loss0.820446, acc0.7218000292778015Test set:average loss: 0.8016, accuracy73.25
+Time :  06/12/2020 18:02:41
+epoch =  17
+Train Epoch: 18, loss0.880297, acc0.7303400039672852Test set:average loss: 0.9902, accuracy71.05
+Time :  06/12/2020 18:06:42
+epoch =  18
+Train Epoch: 19, loss0.809889, acc0.7388799786567688Test set:average loss: 0.7987, accuracy73.12
+Time :  06/12/2020 18:10:43
+epoch =  19
+Train Epoch: 20, loss0.824467, acc0.7441200017929077Test set:average loss: 0.7271, accuracy75.28
+Time :  06/12/2020 18:14:43
+epoch =  20
+Train Epoch: 21, loss0.827588, acc0.75Test set:average loss: 0.7229, accuracy75.18
+Time :  06/12/2020 18:18:44
+epoch =  21
+Train Epoch: 22, loss0.862926, acc0.7562199831008911Test set:average loss: 0.7131, accuracy75.6
+Time :  06/12/2020 18:22:45
+epoch =  22
+Train Epoch: 23, loss0.774798, acc0.7618200182914734Test set:average loss: 0.7058, accuracy75.75
+Time :  06/12/2020 18:26:46
+epoch =  23
+Train Epoch: 24, loss0.669829, acc0.7607600092887878Test set:average loss: 0.6902, accuracy76.06
+Time :  06/12/2020 18:30:46
+epoch =  24
+Change lr:0.010000000000000002
+Train Epoch: 25, loss0.505833, acc0.8069000244140625Test set:average loss: 0.5643, accuracy80.41
+Time :  06/12/2020 18:34:47
+epoch =  25
+Train Epoch: 26, loss0.455989, acc0.8179000020027161Test set:average loss: 0.5564, accuracy80.86
+Time :  06/12/2020 18:38:47
+epoch =  26
+Train Epoch: 27, loss0.580341, acc0.8240000009536743Test set:average loss: 0.5520, accuracy81.07
+Time :  06/12/2020 18:42:47
+epoch =  27
+Train Epoch: 28, loss0.563878, acc0.8299999833106995Test set:average loss: 0.5438, accuracy81.24
+Time :  06/12/2020 18:46:48
+epoch =  28
+Train Epoch: 29, loss0.418677, acc0.8335599899291992Test set:average loss: 0.5416, accuracy81.4
+Time :  06/12/2020 18:50:48
+epoch =  29
+Train Epoch: 30, loss0.404694, acc0.8350800275802612Test set:average loss: 0.5410, accuracy81.56
+Time :  06/12/2020 18:54:48
+epoch =  30
+Train Epoch: 31, loss0.539111, acc0.8373200297355652Test set:average loss: 0.5334, accuracy81.52
+Time :  06/12/2020 18:58:48
+epoch =  31
+Train Epoch: 32, loss0.680416, acc0.8418200016021729Test set:average loss: 0.5337, accuracy81.67
+Time :  06/12/2020 19:02:49
+epoch =  32
+Train Epoch: 33, loss0.336952, acc0.843779981136322Test set:average loss: 0.5364, accuracy81.75
+Time :  06/12/2020 19:06:49
+epoch =  33
+Train Epoch: 34, loss0.539841, acc0.8458799719810486Test set:average loss: 0.5333, accuracy81.4
+Time :  06/12/2020 19:10:49
+epoch =  34
+Train Epoch: 35, loss0.566221, acc0.8497200012207031Test set:average loss: 0.5304, accuracy81.86
+Time :  06/12/2020 19:14:50
+epoch =  35
+Train Epoch: 36, loss0.470418, acc0.8523799777030945Test set:average loss: 0.5343, accuracy81.66
+Time :  06/12/2020 19:18:50
+epoch =  36
+Train Epoch: 37, loss0.567302, acc0.8527799844741821Test set:average loss: 0.5302, accuracy81.85
+Time :  06/12/2020 19:22:50
+epoch =  37
+Train Epoch: 38, loss0.374542, acc0.855400025844574Test set:average loss: 0.5334, accuracy81.97
+Time :  06/12/2020 19:26:50
+epoch =  38
+Train Epoch: 39, loss0.412064, acc0.858020007610321Test set:average loss: 0.5353, accuracy81.97
+Time :  06/12/2020 19:30:51
+epoch =  39
+Train Epoch: 40, loss0.407608, acc0.8609799742698669Test set:average loss: 0.5347, accuracy82.07
+Time :  06/12/2020 19:34:52
+epoch =  40
+Train Epoch: 41, loss0.336957, acc0.8585799932479858Test set:average loss: 0.5313, accuracy82.23
+Time :  06/12/2020 19:38:53
+epoch =  41
+Train Epoch: 42, loss0.272493, acc0.8633800148963928Test set:average loss: 0.5289, accuracy82.18
+Time :  06/12/2020 19:42:57
+epoch =  42
+Train Epoch: 43, loss0.369912, acc0.8662599921226501Test set:average loss: 0.5446, accuracy82.02
+Time :  06/12/2020 19:46:57
+epoch =  43
+Train Epoch: 44, loss0.393665, acc0.868340015411377Test set:average loss: 0.5400, accuracy82.11
+Time :  06/12/2020 19:50:57
+epoch =  44
+Train Epoch: 45, loss0.228229, acc0.8701599836349487Test set:average loss: 0.5485, accuracy82.04
+Time :  06/12/2020 19:54:58
+epoch =  45
+Train Epoch: 46, loss0.227926, acc0.8723000288009644Test set:average loss: 0.5438, accuracy82.46
+Time :  06/12/2020 19:58:58
+epoch =  46
+Train Epoch: 47, loss0.271299, acc0.8725000023841858Test set:average loss: 0.5529, accuracy81.85
+Time :  06/12/2020 20:02:58
+epoch =  47
+Train Epoch: 48, loss0.307160, acc0.8760799765586853Test set:average loss: 0.5411, accuracy82.13
+Time :  06/12/2020 20:06:59
+epoch =  48
+Train Epoch: 49, loss0.250134, acc0.8773199915885925Test set:average loss: 0.5433, accuracy82.33
+Time :  06/12/2020 20:10:59
+epoch =  49
+Train Epoch: 50, loss0.462257, acc0.8768600225448608Test set:average loss: 0.5530, accuracy82.16
+Best acc0.8246
+
