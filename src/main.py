@@ -250,14 +250,14 @@ def train(start_epochs, n_epochs, valid_loss_min_input, loaders, model, optimize
     print('Best acc{}'.format(best_val_acc))     
     # return trained model
     return model
-print('YOLO')
-checkpoint_path = '/home/varshittha/dynamic-convolution/src/checkpoint/current_checkpoint.pt'
-best_model_path = '/home/varshittha/dynamic-convolution/src/best_model/best_model.pt'
-start_epochs    = 0
-n_epochs        = args.epochs
-valid_loss_min_input = np.Inf
-print("IOLO!")
-trained_model = train(start_epochs, n_epochs, valid_loss_min_input, loaders, model, optimizer, checkpoint_path, best_model_path)
+# print('YOLO')
+# checkpoint_path = '/home/varshittha/dynamic-convolution/src/checkpoint/current_checkpoint.pt'
+# best_model_path = '/home/varshittha/dynamic-convolution/src/best_model/best_model.pt'
+# start_epochs    = 0
+# n_epochs        = args.epochs
+# valid_loss_min_input = np.Inf
+# print("IOLO!")
+# trained_model = train(start_epochs, n_epochs, valid_loss_min_input, loaders, model, optimizer, checkpoint_path, best_model_path)
 
 if __name__ == '__main__':
     checkpoint_path = '/home/varshittha/dynamic-convolution/src/checkpoint/current_checkpoint.pt'
