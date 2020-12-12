@@ -210,8 +210,11 @@ def _train(start,end,valid_loss_min_input,optimizer,checkpoint_path,best_model_p
 
         
     print('Best acc{}'.format(best_val_acc))
-valid_loss_min_input = float("inf")
-checkpoint_path = '/home/varshittha/dynamic-convolution/src/checkpoint/current_checkpoint.pt'
-best_model_path = '/home/varshittha/dynamic-convolution/src/best_model/best_model.pt'
+
+if __name__ == '__main__':
+
+    valid_loss_min_input = float("inf")
+    checkpoint_path = '/home/varshittha/dynamic-convolution/src/checkpoint/current_checkpoint.pt'
+    best_model_path = '/home/varshittha/dynamic-convolution/src/best_model/best_model.pt'
     # start_epochs    = 0
-_train(0,1, valid_loss_min_input, optimizer, checkpoint_path, best_model_path)
+    _train(0,5, valid_loss_min_input, optimizer, checkpoint_path, best_model_path)
