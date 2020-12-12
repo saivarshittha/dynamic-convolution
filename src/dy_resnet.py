@@ -224,7 +224,7 @@ def _resnet(arch,block,layers,pretrained,progress, **kwargs):
 def resnet18(pretrained = False,progress = True,**kwargs):
     
     return _resnet('resnet18',BasicBlock,[2,2,2,2],pretrained,progress,**kwargs)
-
+    
 def resnet34(pretrained = False,progress = True,**kwargs):
     return _resnet('resnet34',BasicBlock,[3,4,6,3],pretrained,progress,**kwargs)
 
@@ -236,4 +236,3 @@ def resnet101(pretrained = False, progress=True,**kwargs):
 
 def resnet152(pretrained = False,progress = True,**kwargs):
     return _resnet('resnet152',Bottleneck,[3,8,36,3],pretrained,progress,**kwargs)
-
