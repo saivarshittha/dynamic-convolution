@@ -1,11 +1,16 @@
+
 from __future__ import division
+
+import os 
+os.environ['CUDA_LAUNCH_BLOCKING'] = "1"
+
 import torch
 import torchvision
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 import time
-import os 
+
 import pandas as pd
 import argparse
 import shutil
@@ -23,10 +28,10 @@ from datetime import datetime
 
 
 parser = argparse.ArgumentParser(description='dynamic convolution')
-parser.add_argument('--dataset', type=str, default='cifar10', help='training dataset')
+parser.add_argument('--dataset', type=str, default='cifar100', help='training dataset')
 parser.add_argument('--batch-size', type=int, default=128)
 parser.add_argument('--test-batch-size', type=int, default=20)
-parser.add_argument('--epochs', type=int, default=30)
+parser.add_argument('--epochs', type=int, default=40)
 parser.add_argument('--lr', type=float, default=0.1, )
 parser.add_argument('--momentum', type=float, default=0.9)
 parser.add_argument('--weight-decay', type=float, default=1e-4)
@@ -76,9 +81,9 @@ elif args.dataset=='cifar100':
                                                transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010))
                                            ]))
     testloader = torch.utils.data.DataLoader(testset, batch_size=args.batch_size, shuffle=False, num_workers=0)
-loaders ={
-    trainloader,testloader
-}
+# loaders ={
+#     trainloader,testloader
+# }
 if args.net_name=='dy_resnet18':
     # print('nnn')
     model = dy_resnet18(num_classes=numclasses)
@@ -114,7 +119,7 @@ def save_ckp(state, is_best, checkpoint_path, best_model_path):
     best_model_path: path to save best model
     """
     f_path = checkpoint_path
-    # save checkpoint data to the path given, checkpoint_path
+    
     torch.save(state, f_path)
     # if it is a best model, min validation loss
     if is_best:
@@ -131,13 +136,16 @@ def load_ckp(checkpoint_fpath, model, optimizer):
     # load check point
     checkpoint = torch.load(checkpoint_fpath)
     # initialize state_dict from checkpoint to model
-    model.load_state_dict(checkpoint['state_dict'])
+    model.load_state_dict(checkpoint['state_dict'],strict = False)
+    
     # initialize optimizer from checkpoint to optimizer
     optimizer.load_state_dict(checkpoint['optimizer'])
     # initialize valid_loss_min from checkpoint to valid_loss_min
     valid_loss_min = checkpoint['valid_loss_min']
+    model.eval()
+    # print('type = ',type(valid_loss_min))
     # return model, optimizer, epoch value, min validation loss 
-    return model, optimizer, checkpoint['epoch'], valid_loss_min.item()
+    return model, optimizer, checkpoint['epoch'], valid_loss_min
 
 
 def adjust_lr(optimizer, epoch):
@@ -147,123 +155,52 @@ def adjust_lr(optimizer, epoch):
             lr = p['lr']
         print('Change lr:'+str(lr))
 
-def train(start_epochs, n_epochs, valid_loss_min_input, loaders, model, optimizer, checkpoint_path, best_model_path):
-    """
-    Keyword arguments:
-    start_epochs -- the real part (default 0.0)
-    n_epochs -- the imaginary part (default 0.0)
-    valid_loss_min_input
-    loaders
-    model
-    optimizer
-    criterion
-    use_cuda
-    checkpoint_path
-    best_model_path
-    
-    returns trained model
-    """
-    # initialize tracker for minimum validation loss
-    valid_loss_min = valid_loss_min_input 
-    best_val_acc   = 0.0
-    time_stamp()
-    
-    for epoch in range(start_epochs, n_epochs+1):
-        print('Hi!!')
-        print("epoch = ",epoch)
-        # initialize variables to monitor training and validation loss
-        avg_loss = 0.0
-        test_loss = 0.0
-        train_acc  = 0.0
-        val_acc    = 0.0
-        
-        ###################
-        # train the model #
-        ###################
-        model.train()
-        adjust_lr(optimizer, epoch)
-        for batch_idx, (data, target) in enumerate(trainloader):
-            
-            data, target = data.to(f'cuda:{model.device_ids[0]}'), target.to(f'cuda:{model.device_ids[0]}')
-            optimizer.zero_grad()
+def train(epoch):
+    model.train()
+    avg_loss = 0.
+    train_acc = 0.
+    adjust_lr(optimizer, epoch)
+    for batch_idx, (data, target) in enumerate(trainloader):
+
+        data, target = data.to(f'cuda:{model.device_ids[0]}'), target.to(f'cuda:{model.device_ids[0]}')
+        optimizer.zero_grad()
+        # print('aaa')
+        output = model(data)
+        loss = F.cross_entropy(output, target)
+        avg_loss += loss.item()
+        pred = output.data.max(1, keepdim=True)[1]
+        train_acc += pred.eq(target.data.view_as(pred)).cpu().sum()
+        loss.backward()
+
+        optimizer.step()
+    print('Train Epoch: {}, loss{:.6f}, acc{}'.format(epoch, loss.item(), train_acc/len(trainloader.dataset)), end='')
+    if args.net_name.startswith('dy'):
+        model.module.update_temperature()
+
+
+def val(epoch):
+    model.eval()
+    test_loss = 0.
+    correct=0.
+    with torch.no_grad():
+        for data, label in testloader:
+            data, label = data.to(f'cuda:{model.device_ids[0]}'), label.to(f'cuda:{model.device_ids[0]}')
             output = model(data)
-            loss = F.cross_entropy(output, target)
-            avg_loss += loss.item()
-            pred = output.data.max(1, keepdim=True)[1]
-            train_acc += pred.eq(target.data.view_as(pred)).cpu().sum()
-            loss.backward()
-            optimizer.step()
-        print('Train Epoch: {}, loss{:.6f}, acc{}'.format(epoch, loss.item(), train_acc/len(trainloader.dataset)), end='')
+            test_loss += F.cross_entropy(output, label, reduction = 'sum').item()
+            pred =  output.data.max(1, keepdim=True)[1]
+            correct += pred.eq(label.data.view_as(pred)).cpu().sum()
+    test_loss/=len(testloader.dataset)
+    correct = int(correct)
+    print('Test set:average loss: {:.4f}, accuracy{}'.format(test_loss, 100.*correct/len(testloader.dataset)))
+    return correct/len(testloader.dataset)
 
-            
-        if args.net_name.startswith('dy'):
-            model.module.update_temperature()
 
-        
-
-        ######################    
-        # validate the model #
-        ######################
-        model.eval()
-        correct = 0.0
-        with torch.no_grad():
-            for data,label in testloader:
-                data, label = data.to(f'cuda:{model.device_ids[0]}'), label.to(f'cuda:{model.device_ids[0]}')
-                output = model(data)
-                test_loss += F.cross_entropy(output, label, reduction = 'sum').item()
-                pred =  output.data.max(1, keepdim=True)[1]
-                correct += pred.eq(label.data.view_as(pred)).cpu().sum()
-        test_loss/=len(testloader.dataset)    
-        correct = int(correct)
-        print('Test set:average loss: {:.4f}, accuracy{}'.format(test_loss, 100.*correct/len(testloader.dataset)))
-        val_acc = correct/len(testloader.dataset)
-        if val_acc > best_val_acc:
-            best_val_acc = val_acc
-            
-    
- 
-        # print('Epoch: {} \tTraining Loss: {:.6f} \tValidation Loss: {:.6f}'.format(
-        #     epoch, 
-        #     train_loss,
-        #     test_loss
-        #     ))
-        
-        # create checkpoint variable and add important data
-        checkpoint = {
-            'epoch': epoch + 1,
-            'valid_loss_min': test_loss,
-            'state_dict': model.state_dict(),
-            'optimizer': optimizer.state_dict(),
-        }
-        
-        # save checkpoint
-        save_ckp(checkpoint, False, checkpoint_path, best_model_path)
-        
-        ## TODO: save the model if validation loss has decreased
-        print('val_loss this time =',test_loss,'min = ',valid_loss_min)
-        if test_loss <= valid_loss_min:
-            print('Validation loss decreased ({:.6f} --> {:.6f}).  Saving model ...'.format(valid_loss_min,test_loss))
-            # save checkpoint as best model
-            save_ckp(checkpoint, True, checkpoint_path, best_model_path)
-            valid_loss_min = test_loss
-    print(epoch,'epoch ended')   
-    print('Best acc{}'.format(best_val_acc))     
-    # return trained model
-    return model
-# print('YOLO')
-# checkpoint_path = '/home/varshittha/dynamic-convolution/src/checkpoint/current_checkpoint.pt'
-# best_model_path = '/home/varshittha/dynamic-convolution/src/best_model/best_model.pt'
-# start_epochs    = 0
-# n_epochs        = args.epochs
-# valid_loss_min_input = np.Inf
-# print("IOLO!")
-# trained_model = train(start_epochs, n_epochs, valid_loss_min_input, loaders, model, optimizer, checkpoint_path, best_model_path)
-
-if __name__ == '__main__':
-    checkpoint_path = '/home/varshittha/dynamic-convolution/src/checkpoint/current_checkpoint.pt'
-    best_model_path = '/home/varshittha/dynamic-convolution/src/best_model/best_model.pt'
-    start_epochs    = 0
-    n_epochs        = args.epochs
-    valid_loss_min_input = np.Inf
-    print("IOLO!")
-    trained_model = train(start_epochs, n_epochs, valid_loss_min_input, loaders, model, optimizer, checkpoint_path, best_model_path)
+best_val_acc=0.
+for i in range(args.epochs):
+    time_stamp()
+    print("epoch = ",i)
+    train(i+1)
+    temp_acc = val(i+1)
+    if temp_acc>best_val_acc:
+        best_val_acc = temp_acc
+print('Best acc{}'.format(best_val_acc))
