@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-
+"""
 class attention1d(nn.Module):
     def __init__(self,in_planes,ratios,K,temperature,init_weight = True):
         super(attention1d,self).__init__()
@@ -12,7 +12,7 @@ class attention1d(nn.Module):
             hidden_planes = int(in_planes * ratios) + 1
         else:
             hidden_planes = K
-        print('hidden planes',hidden_planes)
+        
         self.fc1   = nn.Conv1d(in_planes,hidden_planes,1,bias = False)
         self.relu  = nn.ReLU()
         self.fc2   = nn.Conv1d(hidden_planes,K,1,bias = True)
@@ -93,22 +93,21 @@ class Dynamic_conv1d(nn.Module):
         aggregate_weight = torch.mm(softmax_attention,self.bias).view(-1,self.in_planes,self.kernel_size,)# expects two matrices (2D tensors)
         if self.bias is not None:
             aggregate_bias = torch.mm(softmax_attention,self.bias).view(-1)
-            output = F.conv1d(z,weight = aggregate_weight,bias = aggregate_bias,stride = self.stride,padding = self.padding,
+            output = F.conv1d(x,weight = aggregate_weight,bias = aggregate_bias,stride = self.stride,padding = self.padding,
                              dilation=self.dilation, groups=self.groups * batch_size)
         else:
-            output = F.conv1d(z,weight = aggregate_weight,bias = None,stride = self.stride,padding = self.padding,
+            output = F.conv1d(x,weight = aggregate_weight,bias = None,stride = self.stride,padding = self.padding,
                              dilation=self.dilation, groups=self.groups * batch_size)
         output = output.view(batch_size, self.out_planes, output.size(-1))
         return output
-
+"""
 
 class attention2d(nn.Module):
     def __init__(self,in_planes,ratios,K,temperature,init_weight = True):
         super(attention2d,self).__init__()
         assert temperature % 3 == 1 # for reducing τ temperature from 30 to 1 linearly in the first 10 epochs.
         self.avgpool = nn.AdaptiveAvgPool2d(1)
-        # print('inplanes',in_planes)
-        # print('ratios',ratios)
+        
         if in_planes != 3:
             hidden_planes = int(in_planes * ratios) + 1
         else:
@@ -184,7 +183,6 @@ class Dynamic_conv2d(nn.Module):
 #         Regard batch as a dimensional variable, perform group convolution,
 #         because the weight of group convolution is different, 
 #         and the weight of dynamic convolution is also different
-
         softmax_attention = self.attention(z)
         batch_size ,in_planes,height,width = z.size()
         z = z.view(1,-1,height,width) # changing into dimension for group convolution
@@ -196,13 +194,13 @@ class Dynamic_conv2d(nn.Module):
         aggregate_weight = torch.mm(softmax_attention,weight).view(-1,self.in_planes,self.kernel_size,self.kernel_size)# expects two matrices (2D tensors)
         if self.bias is not None:
             aggregate_bias = torch.mm(softmax_attention,self.bias).view(-1)
-            output = F.conv2d(z,weight = aggregate_weight,bias = aggregate_bias,stride = self.stride,padding = self.padding,
+            output = F.conv2d(x,weight = aggregate_weight,bias = aggregate_bias,stride = self.stride,padding = self.padding,
                              dilation=self.dilation, groups=self.groups * batch_size)
         else:
             output = F.conv2d(z,weight = aggregate_weight,bias = None,stride = self.stride,padding = self.padding,
                              dilation=self.dilation, groups=self.groups * batch_size)
         output = output.view(batch_size, self.out_planes, output.size(-2),output.size(-1))
-        # print('groups = ',self.groups)
+        # print('2d-att-for')
         return output        
 """
 class attention3d(nn.Module):
@@ -303,10 +301,7 @@ class Dynamic_conv3d(nn.Module):
         return output 
 """
 if __name__ == '__main__':
-    print("hi")
-    print("hi")
-    print("hi")
-    # x = torch.randn(24, 3,  20)
+    x = torch.randn(24, 3,  20)
     # model = Dynamic_conv1d(in_planes=3, out_planes=16, kernel_size=3, ratio=0.25, padding=1,)
     # x = x.to('cuda:0')
     # model.to('cuda')
