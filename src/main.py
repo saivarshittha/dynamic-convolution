@@ -119,7 +119,7 @@ def save_ckp(state, is_best, checkpoint_path, best_model_path):
     best_model_path: path to save best model
     """
     f_path = checkpoint_path
-    
+    # save checkpoint data to the path given, checkpoint_path
     torch.save(state, f_path)
     # if it is a best model, min validation loss
     if is_best:
@@ -155,52 +155,114 @@ def adjust_lr(optimizer, epoch):
             lr = p['lr']
         print('Change lr:'+str(lr))
 
-def train(epoch):
-    model.train()
-    avg_loss = 0.
-    train_acc = 0.
-    adjust_lr(optimizer, epoch)
-    for batch_idx, (data, target) in enumerate(trainloader):
-
-        data, target = data.to(f'cuda:{model.device_ids[0]}'), target.to(f'cuda:{model.device_ids[0]}')
-        optimizer.zero_grad()
-        # print('aaa')
-        output = model(data)
-        loss = F.cross_entropy(output, target)
-        avg_loss += loss.item()
-        pred = output.data.max(1, keepdim=True)[1]
-        train_acc += pred.eq(target.data.view_as(pred)).cpu().sum()
-        loss.backward()
-
-        optimizer.step()
-    print('Train Epoch: {}, loss{:.6f}, acc{}'.format(epoch, loss.item(), train_acc/len(trainloader.dataset)), end='')
-    if args.net_name.startswith('dy'):
-        model.module.update_temperature()
-
-
-def val(epoch):
-    model.eval()
-    test_loss = 0.
-    correct=0.
-    with torch.no_grad():
-        for data, label in testloader:
-            data, label = data.to(f'cuda:{model.device_ids[0]}'), label.to(f'cuda:{model.device_ids[0]}')
-            output = model(data)
-            test_loss += F.cross_entropy(output, label, reduction = 'sum').item()
-            pred =  output.data.max(1, keepdim=True)[1]
-            correct += pred.eq(label.data.view_as(pred)).cpu().sum()
-    test_loss/=len(testloader.dataset)
-    correct = int(correct)
-    print('Test set:average loss: {:.4f}, accuracy{}'.format(test_loss, 100.*correct/len(testloader.dataset)))
-    return correct/len(testloader.dataset)
-
-
-best_val_acc=0.
-for i in range(args.epochs):
+def train(start_epochs, n_epochs, valid_loss_min_input, optimizer, checkpoint_path, best_model_path):
+    """
+    Keyword arguments:
+    start_epochs -- the real part (default 0.0)
+    n_epochs -- the imaginary part (default 0.0)
+    valid_loss_min_input
+    loaders
+    model
+    optimizer
+    criterion
+    use_cuda
+    checkpoint_path
+    best_model_path
+    
+    returns trained model
+    """
+    print("start_epochs",start_epochs)
+    print("n_epochs",n_epochs)
+    print(valid_loss_min_input)
+    # print(loaders)
+    print(optimizer)
+    # initialize tracker for minimum validation loss
+    valid_loss_min = valid_loss_min_input 
+    best_val_acc   = 0.0
     time_stamp()
-    print("epoch = ",i)
-    train(i+1)
-    temp_acc = val(i+1)
-    if temp_acc>best_val_acc:
-        best_val_acc = temp_acc
-print('Best acc{}'.format(best_val_acc))
+    
+    for epoch in range(start_epochs, n_epochs+1):
+        model.train()
+        print("epoch = ",epoch)
+        avg_loss = 0.
+        test_loss = 0.
+        train_acc  = 0.
+        val_acc    = 0.
+        adjust_lr(optimizer, epoch)
+        for batch_idx, (data, target) in enumerate(trainloader):
+            data, target = data.to(f'cuda:{model.device_ids[0]}'), target.to(f'cuda:{model.device_ids[0]}')
+            optimizer.zero_grad()
+            print('IOLO')
+            print(model)
+            output = model(data)
+            loss = F.cross_entropy(output, target)
+            avg_loss += loss.item()
+            pred = output.data.max(1, keepdim=True)[1]
+            train_acc += pred.eq(target.data.view_as(pred)).cpu().sum()           
+            loss.backward()
+            optimizer.step()
+        print('Train Epoch: {}, loss{:.6f}, acc{}'.format(epoch, loss.item(), train_acc/len(trainloader.dataset)), end='')
+
+            
+        if args.net_name.startswith('dy'):
+            model.module.update_temperature()
+
+        
+
+        ######################    
+        # validate the model #
+        ######################
+        model.eval()
+        correct = 0.0
+        with torch.no_grad():
+            for data,label in testloader:
+                data, label = data.to(f'cuda:{model.device_ids[0]}'), label.to(f'cuda:{model.device_ids[0]}')
+                output = model(data)
+                test_loss += F.cross_entropy(output, label, reduction = 'sum').item()
+                pred =  output.data.max(1, keepdim=True)[1]
+                correct += pred.eq(label.data.view_as(pred)).cpu().sum()
+        test_loss/=len(testloader.dataset)    
+        correct = int(correct)
+        print('Test set:average loss: {:.4f}, accuracy{}'.format(test_loss, 100.*correct/len(testloader.dataset)))
+        val_acc = correct/len(testloader.dataset)
+        if val_acc > best_val_acc:
+            best_val_acc = val_acc
+            
+    
+ 
+        # print('Epoch: {} \tTraining Loss: {:.6f} \tValidation Loss: {:.6f}'.format(
+        #     epoch, 
+        #     train_loss,
+        #     test_loss
+        #     ))
+        
+        # create checkpoint variable and add important data
+        checkpoint = {
+            'epoch': epoch + 1,
+            'valid_loss_min': test_loss,
+            'state_dict': model.state_dict(),
+            'optimizer': optimizer.state_dict(),
+        }
+        
+        # save checkpoint
+        save_ckp(checkpoint, False, checkpoint_path, best_model_path)
+        
+        ## TODO: save the model if validation loss has decreased
+        print('val_loss this time =',test_loss,'min = ',valid_loss_min)
+        if test_loss <= valid_loss_min:
+            print('Validation loss decreased ({:.6f} --> {:.6f}).  Saving model ...'.format(valid_loss_min,test_loss))
+            # save checkpoint as best model
+            save_ckp(checkpoint, True, checkpoint_path, best_model_path)
+            valid_loss_min = test_loss
+    print(epoch,'epoch ended')   
+    print('Best acc{}'.format(best_val_acc))     
+    # return trained model
+    return model
+if __name__ == '__main__':
+    checkpoint_path = '/home/varshittha/dynamic-convolution/src/checkpoint/current_checkpoint.pt'
+    best_model_path = '/home/varshittha/dynamic-convolution/src/best_model/best_model.pt'
+    start_epochs    = 0
+    n_epochs        = args.epochs
+    valid_loss_min_input = np.Inf
+    print("IOLO!")
+    trained_model = train(start_epochs, n_epochs, valid_loss_min_input, optimizer, checkpoint_path, best_model_path)
