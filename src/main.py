@@ -128,13 +128,14 @@ def load_ckp(checkpoint_fpath, model, optimizer):
     # load check point
     checkpoint = torch.load(checkpoint_fpath)
     # initialize state_dict from checkpoint to model
-    model.load_state_dict(checkpoint['state_dict'])
+    model.load_state_dict(checkpoint['state_dict'],strict = False)
     # initialize optimizer from checkpoint to optimizer
     optimizer.load_state_dict(checkpoint['optimizer'])
     # initialize valid_loss_min from checkpoint to valid_loss_min
     valid_loss_min = checkpoint['valid_loss_min']
     # return model, optimizer, epoch value, min validation loss 
-    return model, optimizer, checkpoint['epoch'], valid_loss_min.item()
+    model.eval()
+    return model, optimizer, checkpoint['epoch'], valid_loss_min
 
 
 def adjust_lr(optimizer, epoch):
