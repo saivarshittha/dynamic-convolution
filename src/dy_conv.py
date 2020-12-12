@@ -93,10 +93,10 @@ class Dynamic_conv1d(nn.Module):
         aggregate_weight = torch.mm(softmax_attention,self.bias).view(-1,self.in_planes,self.kernel_size,)# expects two matrices (2D tensors)
         if self.bias is not None:
             aggregate_bias = torch.mm(softmax_attention,self.bias).view(-1)
-            output = F.conv1d(x,weight = aggregate_weight,bias = aggregate_bias,stride = self.stride,padding = self.padding,
+            output = F.conv1d(z,weight = aggregate_weight,bias = aggregate_bias,stride = self.stride,padding = self.padding,
                              dilation=self.dilation, groups=self.groups * batch_size)
         else:
-            output = F.conv1d(x,weight = aggregate_weight,bias = None,stride = self.stride,padding = self.padding,
+            output = F.conv1d(z,weight = aggregate_weight,bias = None,stride = self.stride,padding = self.padding,
                              dilation=self.dilation, groups=self.groups * batch_size)
         output = output.view(batch_size, self.out_planes, output.size(-1))
         return output
@@ -196,7 +196,7 @@ class Dynamic_conv2d(nn.Module):
         aggregate_weight = torch.mm(softmax_attention,weight).view(-1,self.in_planes,self.kernel_size,self.kernel_size)# expects two matrices (2D tensors)
         if self.bias is not None:
             aggregate_bias = torch.mm(softmax_attention,self.bias).view(-1)
-            output = F.conv2d(x,weight = aggregate_weight,bias = aggregate_bias,stride = self.stride,padding = self.padding,
+            output = F.conv2d(z,weight = aggregate_weight,bias = aggregate_bias,stride = self.stride,padding = self.padding,
                              dilation=self.dilation, groups=self.groups * batch_size)
         else:
             output = F.conv2d(z,weight = aggregate_weight,bias = None,stride = self.stride,padding = self.padding,
