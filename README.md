@@ -12,9 +12,9 @@ I implemented dynamic convolution for Resnet.</br>
 </br>
 
  **Files** :
-- main.py - Source file </br>
--  dy_conv.py - Consists of 2d- Dynamic convolution class </br>
--  dy_resnet.py - Implemented Resnet with Dynamic Convolution.</br>
-- load.py - Code to load the saved models.</br>
+- /src/main.py - Source file </br>
+- /src/dy_conv.py - Consists of 2d- Dynamic convolution class </br>
+- /src/dy_resnet.py - Implemented Resnet with Dynamic Convolution.</br>
+- /src/load.py - Code to load the saved models.</br>
 -  Dynamic Convolution.pdf - Report</br>
 - /observations/cifar10-dy_resnet18.txt - output while training cifar10 on dy_resnet18
