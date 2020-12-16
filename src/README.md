@@ -8,7 +8,7 @@ I implemented dynamic convolution for Resnet.</br>
 #### **Executing code**: </br>
 -  Go the current directory</br>
 -  Execute the following command : (these arguments are default arguments)</br>
-python3 main.py --dataset 'cifar10' --batch-size 128 --test-batch-size 20 --epochs 160 --lr 0.1 --momentum 0.9 --weight-decay 1e-4 --net-name dy_resnet18 </br>
+>python3 main.py --dataset 'cifar10' --batch-size 128 --test-batch-size 20 --epochs 160 --lr 0.1 --momentum 0.9 --weight-decay 1e-4 --net-name dy_resnet18 </br>
 </br>
 #### **Files** : </br>
  
