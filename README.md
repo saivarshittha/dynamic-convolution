@@ -5,7 +5,7 @@ In this repo,I implemented the following paper in **Pytorch**: </br>
 
 I implemented dynamic convolution for Resnet.</br>
 </br>
- **E: </br>
+**Execute Code** : </br>
 -  Go the current directory</br>
 -  Execute the following command : (these arguments are default arguments)</br>
 >python3 main.py --dataset 'cifar10' --batch-size 128 --test-batch-size 20 --epochs 160 --lr 0.1 --momentum 0.9 --weight-decay 1e-4 --net-name dy_resnet18 </br>
