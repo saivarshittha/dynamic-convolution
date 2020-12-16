@@ -19,13 +19,15 @@ from torch.utils.data import Dataset
 import torchvision.transforms as transforms
 from collections import OrderedDict
 from torchvision.models.resnet import resnet18 as raw_resnet18
-# from dy_models.dy_resnet import resnet18 as dy_resnet18
 from dy_resnet import resnet18 as dy_resnet18
 from datetime import datetime
 
-# from main import train
 from main import load_ckp
+from main import _train
 from main import train
+from main import val
+from main import save_ckp
+from main import load_ckp
 parser = argparse.ArgumentParser(description='dynamic convolution')
 parser.add_argument('--dataset', type=str, default='cifar10', help='training dataset')
 parser.add_argument('--batch-size', type=int, default=128)
@@ -39,7 +41,7 @@ parser.add_argument('--net-name', default='dy_resnet18')
 args = parser.parse_args()
 print(args)
 args.device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
-# args.device = 'cpu' if torch.cuda.is_available() else 'cpu'
+
 
 
 
@@ -67,13 +69,6 @@ loaders ={
     trainloader,testloader
 }
 model = dy_resnet18(num_classes=numclasses)
-print("plp")
-# model.eval()
-print("lla")
-
-
-# print(model)
-
 optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
 
 ckm_path = '/home/varshittha/dynamic-convolution/src/checkpoint/current_checkpoint.pt'
@@ -90,8 +85,7 @@ print("start_epoch = ", start_epoch)
 print("valid_loss_min = ", valid_loss_min)
 print("valid_loss_min = {:.6f}".format(valid_loss_min))
 
-trained_model = train(start_epoch,60, valid_loss_min, loaders, model, optimizer, "./checkpoint/current_checkpoint.pt", "./best_model/best_model.pt")
-# trained_model.eval() 
+_train(start_epoch,3, valid_loss_min,optimizer, "./checkpoint/current_checkpoint.pt", "./best_model/best_model.pt")
 """
 to set dropout and batch, normalization layers to evaluation mode before running inference.
  Failing to do this will yield inconsistent inference results 
