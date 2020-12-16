@@ -68,7 +68,7 @@ class Bottleneck(nn.Module):
         if norm_layer is None:
             norm_layer = nn.BatchNorm2d
         
-        width = int(out_planes *(base_width/64.)) * groups  ## ?? 
+        width = int(out_planes *(base_width/64.)) * groups  
         
         self.conv1  = conv1x1(in_planes,width)
         self.bn1    = norm_layer(width)
@@ -161,7 +161,7 @@ class ResNet(nn.Module):
     def update_temperature(self):
         for m in self.modules():
             if isinstance(m,Dynamic_conv2d):
-                m.update_temperature()              ### ???
+                m.update_temperature()             
     
     def _make_layer(self,block,out_planes,blocks,stride = 1,dilate = False):
         """blocks : no.of residual blocks,i.e, the no.of times we gonna use block
@@ -232,7 +232,7 @@ def resnet50(pretrained = False,progress = True,**kwargs):
     return _resnet('resnet50',Bottleneck,[3,4,6,3],pretrained,progress,**kwargs)
 
 def resnet101(pretrained = False, progress=True,**kwargs):
-    return _resnet('resnet101',BottleNeck,[3,4,23,3],pretrained,progress,**kwargs)
+    return _resnet('resnet101',Bottleneck,[3,4,23,3],pretrained,progress,**kwargs)
 
 def resnet152(pretrained = False,progress = True,**kwargs):
     return _resnet('resnet152',Bottleneck,[3,8,36,3],pretrained,progress,**kwargs)
