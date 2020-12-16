@@ -4,6 +4,7 @@ In this repo,I implemented the following paper in **Pytorch**: </br>
 [Dynamic Convolution: Attention over Convolution Kernels.](https://arxiv.org/abs/1912.03458)</br>
 
 I implemented dynamic convolution for Resnet.</br>
+Find the report and discussion here : [Report](https://docs.google.com/document/d/1IJKyyz8CP__eX7hGutsVHpdH8BZd33EKCoHaILujwRQ/edit?usp=sharing)</br>
 </br>
 **Execute Code** : </br>
 -  Go the current directory</br>
