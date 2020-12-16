@@ -16,14 +16,14 @@ from torch.utils.data import Dataset
 import torchvision.transforms as transforms
 from collections import OrderedDict
 from torchvision.models.resnet import resnet18 as raw_resnet18
-# from dy_models.dy_resnet import resnet18 as dy_resnet18
 from dy_resnet import resnet18 as dy_resnet18
+from dy_resnet import resnet101 as dy_resnet101
 from datetime import datetime
 
 
 
 parser = argparse.ArgumentParser(description='dynamic convolution')
-parser.add_argument('--dataset', type=str, default='cifar100', help='training dataset')
+parser.add_argument('--dataset', type=str, default='cifar10', help='training dataset')
 parser.add_argument('--batch-size', type=int, default=128)
 parser.add_argument('--test-batch-size', type=int, default=20)
 parser.add_argument('--epochs', type=int, default=50)
@@ -77,10 +77,9 @@ elif args.dataset=='cifar100':
     testloader = torch.utils.data.DataLoader(testset, batch_size=args.batch_size, shuffle=False, num_workers=0)
 
 if args.net_name=='dy_resnet18':
-    # print('nnn')
     model = dy_resnet18(num_classes=numclasses)
-
-    # print('i doubt')
+if args.net_name == 'dy_resnet101':
+    model = dy_resnet101(num_classes = numclasses)
 elif args.net_name=='raw_resnet18':
     model = raw_resnet18(num_classes=numclasses)
 elif args.net_name=='raw_vgg11':
@@ -90,11 +89,8 @@ elif args.net_name=='dy_vgg11':
 if torch.cuda.device_count() > 1:
     print(torch.cuda.device_count(),"GPUs available.")
     model = nn.DataParallel(model.cuda(),device_ids=[2,0,1,3])
+
 model.to(f'cuda:{model.device_ids[0]}')
-# model = nn.DataParallel(model.module,device_ids = [2,0,1,3])
-# model.to(f'cuda:{model.device_ids[0]}')
-# args.device = f'cuda:{model.device_ids[0]}'
-# model.to(args.device)
 optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
 print(str(args))
 
@@ -155,7 +151,6 @@ def train(epoch):
 
         data, target = data.to(f'cuda:{model.device_ids[0]}'), target.to(f'cuda:{model.device_ids[0]}')
         optimizer.zero_grad()
-        # print('aaa')
         output = model(data)
         loss = F.cross_entropy(output, target)
         avg_loss += loss.item()
@@ -217,5 +212,4 @@ if __name__ == '__main__':
     valid_loss_min_input = float("inf")
     checkpoint_path = '/home/varshittha/dynamic-convolution/src/checkpoint/current_checkpoint.pt'
     best_model_path = '/home/varshittha/dynamic-convolution/src/best_model/best_model.pt'
-    # start_epochs    = 0
-    _train(0,5, valid_loss_min_input, optimizer, checkpoint_path, best_model_path)
+    _train(0,50, valid_loss_min_input, optimizer, checkpoint_path, best_model_path)
