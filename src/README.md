@@ -17,3 +17,4 @@ I implemented dynamic convolution for Resnet.</br>
 -  dy_resnet.py - Implemented Resnet with Dynamic Convolution.</br>
 - load.py - Code to load the saved models.</br>
 -  Dynamic Convolution.pdf - Report</br>
+- /observations/cifar10-dy_resnet18.txt - output while training cifar10 on dy_resnet18
