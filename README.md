@@ -19,6 +19,6 @@ Find the report and discussion here : [Report](https://docs.google.com/document/
 - /src/load.py - Code to load the saved models.</br>
 -  Dynamic Convolution.pdf - Report</br>
 - /observations/cifar10-dy_resnet18.txt - output while training cifar10 on dy_resnet18 50 epochs : Best accuracy - 82.46
-- /observations/cifar10-dy_resnet18-50 epochs.txt - output while training cifar10 on dy_resnet18 50 epochs : Best accuracy - 82.86
-- /observations/cifar100-dy_resnet18.txt -  output while training cifar100 on dy_resnet18 40 epochs : Best accuracy - 52.85
+- /src/observations/cifar10-dy_resnet18-50 epochs.txt - output while training cifar10 on dy_resnet18 50 epochs : Best accuracy - 82.86
+- /src/observations/cifar100-dy_resnet18.txt -  output while training cifar100 on dy_resnet18 40 epochs : Best accuracy - 52.85
 - /src/cub-200-2011.py - dataloader for [cub-200-2011](http://www.vision.caltech.edu/visipedia/CUB-200-2011.html) dataset. (Apparently, I did by mounting on drive)
