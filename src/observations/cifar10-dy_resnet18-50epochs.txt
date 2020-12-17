@@ -226,4 +226,4 @@ Time :  17/12/2020 18:44:37
 epoch: 49
 Train Epoch: 49, loss0.376082, acc0.8852400183677673Test set:average loss: 0.5433, accuracy82.86
 Epoch 49 ended!
-Best acc0.8286
+Best acc = 82.86
