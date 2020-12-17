@@ -193,5 +193,5 @@ epoch =  40
 Train Epoch: 40, loss1.105315, acc0.6717600226402283Test set:average loss: 1.8558, accuracy52.8
 val_loss this time = 1.8558110551834106 min =  1.8493413661956788
 40 epoch ended
-Best acc0.5285
+Best acc 52.85
 169009152it [2:45:48, 16988.01it/s]
