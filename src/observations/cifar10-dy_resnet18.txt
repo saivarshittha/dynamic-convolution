@@ -154,5 +154,5 @@ Train Epoch: 49, loss0.250134, acc0.8773199915885925Test set:average loss: 0.543
 Time :  06/12/2020 20:10:59
 epoch =  49
 Train Epoch: 50, loss0.462257, acc0.8768600225448608Test set:average loss: 0.5530, accuracy82.16
-Best acc0.8246
+Best acc 82.46
 
