@@ -1,0 +1,197 @@
+Namespace(batch_size=128, dataset='cifar100', epochs=40, lr=0.1, momentum=0.9, net_name='dy_resnet18', test_batch_size=20, weight_decay=0.0001)
+Downloading https://www.cs.toronto.edu/~kriz/cifar-100-python.tar.gz to ./data/cifar-100-python.tar.gz
+100%|███████████████████████▉| 168779776/169001437 [00:40<00:00, 4583478.25it/s]Extracting ./data/cifar-100-python.tar.gz to ./data
+Files already downloaded and verified
+5 GPUs available.
+Namespace(batch_size=128, dataset='cifar100', device='cuda:0', epochs=40, lr=0.1, momentum=0.9, net_name='dy_resnet18', test_batch_size=20, weight_decay=0.0001)
+IOLO!
+Time :  09/12/2020 06:10:03
+Hi!!
+epoch =  0
+169009152it [00:59, 4583478.25it/s]                                             Train Epoch: 0, loss4.314119, acc0.031780000776052475Test set:average loss: 21.5302, accuracy7.12
+val_loss this time = 21.530166564178465 min =  inf
+Validation loss decreased (inf --> 21.530167).  Saving model ...
+Hi!!
+epoch =  1
+Train Epoch: 1, loss3.825220, acc0.08938000351190567Test set:average loss: 18.8122, accuracy12.72
+val_loss this time = 18.812221966171265 min =  21.530166564178465
+Validation loss decreased (21.530167 --> 18.812222).  Saving model ...
+Hi!!
+epoch =  2
+Train Epoch: 2, loss3.570634, acc0.14579999446868896Test set:average loss: 60.3782, accuracy19.01
+val_loss this time = 60.37822592315674 min =  18.812221966171265
+Hi!!
+epoch =  3
+Train Epoch: 3, loss3.375409, acc0.19128000736236572Test set:average loss: 50.8278, accuracy22.66
+val_loss this time = 50.82777309684754 min =  18.812221966171265
+Hi!!
+epoch =  4
+Train Epoch: 4, loss3.063931, acc0.22633999586105347Test set:average loss: 9.2623, accuracy25.78
+val_loss this time = 9.262255002975463 min =  18.812221966171265
+Validation loss decreased (18.812222 --> 9.262255).  Saving model ...
+Hi!!
+epoch =  5
+Train Epoch: 5, loss3.106419, acc0.25534000992774963Test set:average loss: 6.9014, accuracy29.32
+val_loss this time = 6.901392300796509 min =  9.262255002975463
+Validation loss decreased (9.262255 --> 6.901392).  Saving model ...
+Hi!!
+epoch =  6
+Train Epoch: 6, loss2.943967, acc0.27814000844955444Test set:average loss: 22.5608, accuracy30.45
+val_loss this time = 22.560843779754638 min =  6.901392300796509
+Hi!!
+epoch =  7
+Train Epoch: 7, loss2.789013, acc0.3016799986362457Test set:average loss: 5.1849, accuracy30.58
+val_loss this time = 5.184863679504395 min =  6.901392300796509
+Validation loss decreased (6.901392 --> 5.184864).  Saving model ...
+Hi!!
+epoch =  8
+Train Epoch: 8, loss2.569813, acc0.3199999928474426Test set:average loss: 3.6969, accuracy31.74
+val_loss this time = 3.6969167835235597 min =  5.184863679504395
+Validation loss decreased (5.184864 --> 3.696917).  Saving model ...
+Hi!!
+epoch =  9
+Train Epoch: 9, loss2.535098, acc0.3354400098323822Test set:average loss: 3.0505, accuracy34.25
+val_loss this time = 3.05054573097229 min =  3.6969167835235597
+Validation loss decreased (3.696917 --> 3.050546).  Saving model ...
+Hi!!
+epoch =  10
+Train Epoch: 10, loss2.622408, acc0.34731999039649963Test set:average loss: 2.9521, accuracy29.57
+val_loss this time = 2.9520524600982667 min =  3.05054573097229
+Validation loss decreased (3.050546 --> 2.952052).  Saving model ...
+Hi!!
+epoch =  11
+Train Epoch: 11, loss2.675209, acc0.36094000935554504Test set:average loss: 2.3931, accuracy38.43
+val_loss this time = 2.393143970489502 min =  2.9520524600982667
+Validation loss decreased (2.952052 --> 2.393144).  Saving model ...
+Hi!!
+epoch =  12
+Train Epoch: 12, loss2.330312, acc0.38242000341415405Test set:average loss: 2.6168, accuracy38.6
+val_loss this time = 2.6168216945648193 min =  2.393143970489502
+Hi!!
+epoch =  13
+Train Epoch: 13, loss2.305727, acc0.3902600109577179Test set:average loss: 2.4366, accuracy39.79
+val_loss this time = 2.436633981704712 min =  2.393143970489502
+Hi!!
+epoch =  14
+Train Epoch: 14, loss2.249572, acc0.4085400104522705Test set:average loss: 2.4863, accuracy40.15
+val_loss this time = 2.4862860260009767 min =  2.393143970489502
+Hi!!
+epoch =  15
+Train Epoch: 15, loss2.017121, acc0.41694000363349915Test set:average loss: 2.2137, accuracy43.23
+val_loss this time = 2.2136861240386962 min =  2.393143970489502
+Validation loss decreased (2.393144 --> 2.213686).  Saving model ...
+Hi!!
+epoch =  16
+Train Epoch: 16, loss2.200871, acc0.43083998560905457Test set:average loss: 2.1786, accuracy43.11
+val_loss this time = 2.178588228225708 min =  2.2136861240386962
+Validation loss decreased (2.213686 --> 2.178588).  Saving model ...
+Hi!!
+epoch =  17
+Train Epoch: 17, loss2.155761, acc0.4404999911785126Test set:average loss: 2.1231, accuracy44.46
+val_loss this time = 2.1231340740203857 min =  2.178588228225708
+Validation loss decreased (2.178588 --> 2.123134).  Saving model ...
+Hi!!
+epoch =  18
+Train Epoch: 18, loss2.319691, acc0.45590001344680786Test set:average loss: 2.2454, accuracy43.33
+val_loss this time = 2.2454301559448244 min =  2.1231340740203857
+Hi!!
+epoch =  19
+Train Epoch: 19, loss2.063543, acc0.46296000480651855Test set:average loss: 2.1087, accuracy44.63
+val_loss this time = 2.1086849403381347 min =  2.1231340740203857
+Validation loss decreased (2.123134 --> 2.108685).  Saving model ...
+Hi!!
+epoch =  20
+Change lr:0.010000000000000002
+Train Epoch: 20, loss1.763180, acc0.5423799753189087Test set:average loss: 1.8892, accuracy50.41
+val_loss this time = 1.88923992729187 min =  2.1086849403381347
+Validation loss decreased (2.108685 --> 1.889240).  Saving model ...
+Hi!!
+epoch =  21
+Train Epoch: 21, loss1.712348, acc0.5666199922561646Test set:average loss: 1.8820, accuracy50.74
+val_loss this time = 1.8819766422271729 min =  1.88923992729187
+Validation loss decreased (1.889240 --> 1.881977).  Saving model ...
+Hi!!
+epoch =  22
+Train Epoch: 22, loss1.533736, acc0.5792800188064575Test set:average loss: 1.8685, accuracy51.21
+val_loss this time = 1.868537396812439 min =  1.8819766422271729
+Validation loss decreased (1.881977 --> 1.868537).  Saving model ...
+Hi!!
+epoch =  23
+Train Epoch: 23, loss1.644757, acc0.5926200151443481Test set:average loss: 1.8740, accuracy51.58
+val_loss this time = 1.8739929822921753 min =  1.868537396812439
+Hi!!
+epoch =  24
+Train Epoch: 24, loss1.555775, acc0.5958399772644043Test set:average loss: 1.8772, accuracy51.59
+val_loss this time = 1.8771973133087159 min =  1.868537396812439
+Hi!!
+epoch =  25
+Train Epoch: 25, loss1.399904, acc0.606939971446991Test set:average loss: 1.8546, accuracy52.33
+val_loss this time = 1.8546323865890504 min =  1.868537396812439
+Validation loss decreased (1.868537 --> 1.854632).  Saving model ...
+Hi!!
+epoch =  26
+Train Epoch: 26, loss1.422581, acc0.6150199770927429Test set:average loss: 1.8530, accuracy51.9
+val_loss this time = 1.8529913402557372 min =  1.8546323865890504
+Validation loss decreased (1.854632 --> 1.852991).  Saving model ...
+Hi!!
+epoch =  27
+Train Epoch: 27, loss1.314434, acc0.6201199889183044Test set:average loss: 1.8493, accuracy52.55
+val_loss this time = 1.8493413661956788 min =  1.8529913402557372
+Validation loss decreased (1.852991 --> 1.849341).  Saving model ...
+Hi!!
+epoch =  28
+Train Epoch: 28, loss1.582027, acc0.6284999847412109Test set:average loss: 1.8819, accuracy51.75
+val_loss this time = 1.881887805366516 min =  1.8493413661956788
+Hi!!
+epoch =  29
+Train Epoch: 29, loss1.554419, acc0.6346200108528137Test set:average loss: 1.8786, accuracy51.59
+val_loss this time = 1.8785500650405884 min =  1.8493413661956788
+Hi!!
+epoch =  30
+Change lr:0.0010000000000000002
+Train Epoch: 30, loss1.581599, acc0.6564599871635437Test set:average loss: 1.8614, accuracy52.09
+val_loss this time = 1.861413576889038 min =  1.8493413661956788
+Hi!!
+epoch =  31
+Train Epoch: 31, loss1.239582, acc0.6627399921417236Test set:average loss: 1.8553, accuracy52.46
+val_loss this time = 1.8553349206924439 min =  1.8493413661956788
+Hi!!
+epoch =  32
+Train Epoch: 32, loss1.202774, acc0.661899983882904Test set:average loss: 1.8630, accuracy52.45
+val_loss this time = 1.8630229305267334 min =  1.8493413661956788
+Hi!!
+epoch =  33
+Train Epoch: 33, loss1.090892, acc0.6667600274085999Test set:average loss: 1.8575, accuracy52.55
+val_loss this time = 1.857474008178711 min =  1.8493413661956788
+Hi!!
+epoch =  34
+Change lr:0.00010000000000000003
+Train Epoch: 34, loss1.267455, acc0.6678400039672852Test set:average loss: 1.8629, accuracy52.31
+val_loss this time = 1.8629442876815796 min =  1.8493413661956788
+Hi!!
+epoch =  35
+Train Epoch: 35, loss1.245191, acc0.6662200093269348Test set:average loss: 1.8598, accuracy52.59
+val_loss this time = 1.8597752244949342 min =  1.8493413661956788
+Hi!!
+epoch =  36
+Train Epoch: 36, loss1.034068, acc0.6706799864768982Test set:average loss: 1.8505, accuracy52.73
+val_loss this time = 1.850493730545044 min =  1.8493413661956788
+Hi!!
+epoch =  37
+Train Epoch: 37, loss1.418693, acc0.6695399880409241Test set:average loss: 1.8537, accuracy52.85
+val_loss this time = 1.853741209411621 min =  1.8493413661956788
+Hi!!
+epoch =  38
+Train Epoch: 38, loss1.295071, acc0.6685199737548828Test set:average loss: 1.8546, accuracy52.49
+val_loss this time = 1.8545767879486084 min =  1.8493413661956788
+Hi!!
+epoch =  39
+Train Epoch: 39, loss1.307867, acc0.6696400046348572Test set:average loss: 1.8550, accuracy52.63
+val_loss this time = 1.8549961584091186 min =  1.8493413661956788
+Hi!!
+epoch =  40
+Train Epoch: 40, loss1.105315, acc0.6717600226402283Test set:average loss: 1.8558, accuracy52.8
+val_loss this time = 1.8558110551834106 min =  1.8493413661956788
+40 epoch ended
+Best acc0.5285
+169009152it [2:45:48, 16988.01it/s]
