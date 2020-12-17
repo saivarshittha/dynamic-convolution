@@ -1,0 +1,229 @@
+Namespace(batch_size=128, dataset='cifar10', epochs=50, lr=0.1, momentum=0.9, net_name='dy_resnet18', test_batch_size=20, weight_decay=0.0001)
+Files already downloaded and verified
+Files already downloaded and verified
+5 GPUs available.
+Namespace(batch_size=128, dataset='cifar10', device='cuda:0', epochs=50, lr=0.1, momentum=0.9, net_name='dy_resnet18', test_batch_size=20, weight_decay=0.0001)
+Time :  17/12/2020 15:29:10
+epoch: 0
+Train Epoch: 0, loss1.806044, acc0.22246000170707703Test set:average loss: 2.1356, accuracy31.6
+Validation loss decreased (inf --> 2.135611).  Saving model ...
+Epoch 0 ended!
+Time :  17/12/2020 15:33:18
+epoch: 1
+Train Epoch: 1, loss1.846444, acc0.36305999755859375Test set:average loss: 1.7304, accuracy42.17
+Validation loss decreased (2.135611 --> 1.730406).  Saving model ...
+Epoch 1 ended!
+Time :  17/12/2020 15:37:20
+epoch: 2
+Train Epoch: 2, loss1.621631, acc0.4045400023460388Test set:average loss: 1.4732, accuracy46.41
+Validation loss decreased (1.730406 --> 1.473169).  Saving model ...
+Epoch 2 ended!
+Time :  17/12/2020 15:41:22
+epoch: 3
+Train Epoch: 3, loss1.535450, acc0.4467799961566925Test set:average loss: 1.5961, accuracy50.73
+Epoch 3 ended!
+Time :  17/12/2020 15:45:19
+epoch: 4
+Train Epoch: 4, loss1.516009, acc0.4823800027370453Test set:average loss: 1.3603, accuracy54.41
+Validation loss decreased (1.473169 --> 1.360266).  Saving model ...
+Epoch 4 ended!
+Time :  17/12/2020 15:49:21
+epoch: 5
+Train Epoch: 5, loss1.546319, acc0.5147200226783752Test set:average loss: 1.4890, accuracy55.3
+Epoch 5 ended!
+Time :  17/12/2020 15:53:18
+epoch: 6
+Train Epoch: 6, loss1.198536, acc0.5439199805259705Test set:average loss: 1.5935, accuracy60.35
+Epoch 6 ended!
+Time :  17/12/2020 15:57:15
+epoch: 7
+Train Epoch: 7, loss1.114477, acc0.5778399705886841Test set:average loss: 2.4054, accuracy56.61
+Epoch 7 ended!
+Time :  17/12/2020 16:01:12
+epoch: 8
+Train Epoch: 8, loss1.180563, acc0.6022800207138062Test set:average loss: 1.4612, accuracy61.12
+Epoch 8 ended!
+Time :  17/12/2020 16:05:09
+epoch: 9
+Train Epoch: 9, loss1.007423, acc0.6236000061035156Test set:average loss: 1.7754, accuracy62.24
+Epoch 9 ended!
+Time :  17/12/2020 16:09:06
+epoch: 10
+Train Epoch: 10, loss0.794994, acc0.6456000208854675Test set:average loss: 1.1749, accuracy58.49
+Validation loss decreased (1.360266 --> 1.174938).  Saving model ...
+Epoch 10 ended!
+Time :  17/12/2020 16:13:08
+epoch: 11
+Train Epoch: 11, loss1.234351, acc0.6625000238418579Test set:average loss: 0.9193, accuracy67.23
+Validation loss decreased (1.174938 --> 0.919312).  Saving model ...
+Epoch 11 ended!
+Time :  17/12/2020 16:17:10
+epoch: 12
+Train Epoch: 12, loss1.061369, acc0.6817399859428406Test set:average loss: 0.8825, accuracy69.05
+Validation loss decreased (0.919312 --> 0.882549).  Saving model ...
+Epoch 12 ended!
+Time :  17/12/2020 16:21:12
+epoch: 13
+Train Epoch: 13, loss0.875227, acc0.6983000040054321Test set:average loss: 0.8342, accuracy71.57
+Validation loss decreased (0.882549 --> 0.834153).  Saving model ...
+Epoch 13 ended!
+Time :  17/12/2020 16:25:14
+epoch: 14
+Train Epoch: 14, loss0.730777, acc0.7082200050354004Test set:average loss: 0.8136, accuracy72.57
+Validation loss decreased (0.834153 --> 0.813618).  Saving model ...
+Epoch 14 ended!
+Time :  17/12/2020 16:29:16
+epoch: 15
+Train Epoch: 15, loss1.111956, acc0.7210800051689148Test set:average loss: 0.7631, accuracy73.62
+Validation loss decreased (0.813618 --> 0.763070).  Saving model ...
+Epoch 15 ended!
+Time :  17/12/2020 16:33:18
+epoch: 16
+Train Epoch: 16, loss0.953343, acc0.7280600070953369Test set:average loss: 0.7504, accuracy73.82
+Validation loss decreased (0.763070 --> 0.750423).  Saving model ...
+Epoch 16 ended!
+Time :  17/12/2020 16:37:19
+epoch: 17
+Train Epoch: 17, loss0.754187, acc0.7369599938392639Test set:average loss: 0.7566, accuracy73.62
+Epoch 17 ended!
+Time :  17/12/2020 16:41:17
+epoch: 18
+Train Epoch: 18, loss0.732041, acc0.7473800182342529Test set:average loss: 0.7370, accuracy74.67
+Validation loss decreased (0.750423 --> 0.737040).  Saving model ...
+Epoch 18 ended!
+Time :  17/12/2020 16:45:18
+epoch: 19
+Train Epoch: 19, loss0.455730, acc0.7511600255966187Test set:average loss: 0.7909, accuracy73.36
+Epoch 19 ended!
+Time :  17/12/2020 16:49:15
+epoch: 20
+Train Epoch: 20, loss0.749697, acc0.7577800154685974Test set:average loss: 0.7131, accuracy74.72
+Validation loss decreased (0.737040 --> 0.713103).  Saving model ...
+Epoch 20 ended!
+Time :  17/12/2020 16:53:17
+epoch: 21
+Train Epoch: 21, loss0.784651, acc0.76528000831604Test set:average loss: 0.6941, accuracy76.36
+Validation loss decreased (0.713103 --> 0.694147).  Saving model ...
+Epoch 21 ended!
+Time :  17/12/2020 16:57:19
+epoch: 22
+Train Epoch: 22, loss0.698026, acc0.7701600193977356Test set:average loss: 0.6659, accuracy77.13
+Validation loss decreased (0.694147 --> 0.665910).  Saving model ...
+Epoch 22 ended!
+Time :  17/12/2020 17:01:20
+epoch: 23
+Train Epoch: 23, loss0.760991, acc0.7735599875450134Test set:average loss: 0.6737, accuracy77.15
+Epoch 23 ended!
+Time :  17/12/2020 17:05:18
+epoch: 24
+Change lr:0.010000000000000002
+Train Epoch: 24, loss0.558281, acc0.8118399977684021Test set:average loss: 0.5561, accuracy81.04
+Validation loss decreased (0.665910 --> 0.556143).  Saving model ...
+Epoch 24 ended!
+Time :  17/12/2020 17:09:20
+epoch: 25
+Train Epoch: 25, loss0.580854, acc0.8269400000572205Test set:average loss: 0.5592, accuracy80.97
+Epoch 25 ended!
+Time :  17/12/2020 17:13:17
+epoch: 26
+Train Epoch: 26, loss0.584608, acc0.8343200087547302Test set:average loss: 0.5346, accuracy81.72
+Validation loss decreased (0.556143 --> 0.534615).  Saving model ...
+Epoch 26 ended!
+Time :  17/12/2020 17:17:18
+epoch: 27
+Train Epoch: 27, loss0.404865, acc0.8371599912643433Test set:average loss: 0.5434, accuracy81.68
+Epoch 27 ended!
+Time :  17/12/2020 17:21:16
+epoch: 28
+Train Epoch: 28, loss0.802303, acc0.8401399850845337Test set:average loss: 0.5418, accuracy81.81
+Epoch 28 ended!
+Time :  17/12/2020 17:25:12
+epoch: 29
+Train Epoch: 29, loss0.410344, acc0.8436200022697449Test set:average loss: 0.5298, accuracy82.28
+Validation loss decreased (0.534615 --> 0.529839).  Saving model ...
+Epoch 29 ended!
+Time :  17/12/2020 17:29:14
+epoch: 30
+Train Epoch: 30, loss0.357448, acc0.8461999893188477Test set:average loss: 0.5277, accuracy82.09
+Validation loss decreased (0.529839 --> 0.527732).  Saving model ...
+Epoch 30 ended!
+Time :  17/12/2020 17:33:16
+epoch: 31
+Train Epoch: 31, loss0.421972, acc0.8514800071716309Test set:average loss: 0.5316, accuracy82.07
+Epoch 31 ended!
+Time :  17/12/2020 17:37:13
+epoch: 32
+Train Epoch: 32, loss0.545279, acc0.8526399731636047Test set:average loss: 0.5306, accuracy82.08
+Epoch 32 ended!
+Time :  17/12/2020 17:41:10
+epoch: 33
+Train Epoch: 33, loss0.545530, acc0.8537200093269348Test set:average loss: 0.5270, accuracy82.24
+Validation loss decreased (0.527732 --> 0.526952).  Saving model ...
+Epoch 33 ended!
+Time :  17/12/2020 17:45:12
+epoch: 34
+Train Epoch: 34, loss0.507841, acc0.8569200038909912Test set:average loss: 0.5261, accuracy82.26
+Validation loss decreased (0.526952 --> 0.526079).  Saving model ...
+Epoch 34 ended!
+Time :  17/12/2020 17:49:13
+epoch: 35
+Train Epoch: 35, loss0.574906, acc0.8591200113296509Test set:average loss: 0.5236, accuracy82.22
+Validation loss decreased (0.526079 --> 0.523594).  Saving model ...
+Epoch 35 ended!
+Time :  17/12/2020 17:53:15
+epoch: 36
+Train Epoch: 36, loss0.391709, acc0.8607000112533569Test set:average loss: 0.5281, accuracy82.31
+Epoch 36 ended!
+Time :  17/12/2020 17:57:12
+epoch: 37
+Train Epoch: 37, loss0.523442, acc0.8604400157928467Test set:average loss: 0.5268, accuracy82.14
+Epoch 37 ended!
+Time :  17/12/2020 18:01:09
+epoch: 38
+Train Epoch: 38, loss0.589839, acc0.8649600148200989Test set:average loss: 0.5309, accuracy82.16
+Epoch 38 ended!
+Time :  17/12/2020 18:05:06
+epoch: 39
+Train Epoch: 39, loss0.386507, acc0.8675600290298462Test set:average loss: 0.5338, accuracy82.01
+Epoch 39 ended!
+Time :  17/12/2020 18:09:03
+epoch: 40
+Train Epoch: 40, loss0.388087, acc0.8693600296974182Test set:average loss: 0.5407, accuracy82.42
+Epoch 40 ended!
+Time :  17/12/2020 18:13:00
+epoch: 41
+Train Epoch: 41, loss0.403810, acc0.8712599873542786Test set:average loss: 0.5288, accuracy82.3
+Epoch 41 ended!
+Time :  17/12/2020 18:16:57
+epoch: 42
+Train Epoch: 42, loss0.408799, acc0.872439980506897Test set:average loss: 0.5355, accuracy82.32
+Epoch 42 ended!
+Time :  17/12/2020 18:20:54
+epoch: 43
+Train Epoch: 43, loss0.511245, acc0.8723199963569641Test set:average loss: 0.5313, accuracy82.51
+Epoch 43 ended!
+Time :  17/12/2020 18:24:51
+epoch: 44
+Train Epoch: 44, loss0.425381, acc0.8750200271606445Test set:average loss: 0.5286, accuracy82.38
+Epoch 44 ended!
+Time :  17/12/2020 18:28:48
+epoch: 45
+Train Epoch: 45, loss0.469943, acc0.8782600164413452Test set:average loss: 0.5367, accuracy82.69
+Epoch 45 ended!
+Time :  17/12/2020 18:32:45
+epoch: 46
+Train Epoch: 46, loss0.291700, acc0.8795400261878967Test set:average loss: 0.5354, accuracy82.76
+Epoch 46 ended!
+Time :  17/12/2020 18:36:43
+epoch: 47
+Train Epoch: 47, loss0.294900, acc0.8807399868965149Test set:average loss: 0.5366, accuracy82.58
+Epoch 47 ended!
+Time :  17/12/2020 18:40:40
+epoch: 48
+Train Epoch: 48, loss0.340159, acc0.8834800124168396Test set:average loss: 0.5475, accuracy82.14
+Epoch 48 ended!
+Time :  17/12/2020 18:44:37
+epoch: 49
+Train Epoch: 49, loss0.376082, acc0.8852400183677673Test set:average loss: 0.5433, accuracy82.86
+Epoch 49 ended!
+Best acc0.8286
